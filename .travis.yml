@@ -1,0 +1,22 @@
+sudo: required
+
+language: java
+
+jdk:
+ - oraclejdk8
+
+sudo: enabled
+
+before_install:
+  - chmod +x mvnw
+
+script:
+  - ./mvnw clean install -DskipTests=true -B
+
+deploy:
+ provider: heroku
+ api-key: 
+  secure: $HEROKU_API_KEY
+ app: fine-email-service
+
+dist: trusty
