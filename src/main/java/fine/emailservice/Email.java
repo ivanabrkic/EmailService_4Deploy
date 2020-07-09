@@ -1,6 +1,12 @@
 package fine.emailservice;
 
-public class Email {
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
+import java.io.Serializable;
+
+@JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class, property = "@id", scope = Email.class)
+public class Email implements Serializable {
 
     private String emailTo;
     private String emailFrom;
@@ -8,6 +14,13 @@ public class Email {
     private String body;
 
     public Email() {
+    }
+
+    public Email(String emailTo, String emailFrom, String subject, String body) {
+        this.emailTo = emailTo;
+        this.emailFrom = emailFrom;
+        this.subject = subject;
+        this.body = body;
     }
 
     public String getSubject() {
